@@ -1,5 +1,7 @@
 import unittest
 from temp_breach_classify import classify_temperature_breach
+from breach_infer import infer_breach
+from check_alert import check_and_alert
 
 class TypewiseTest(unittest.TestCase):
     
