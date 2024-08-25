@@ -1,4 +1,5 @@
 from temp_breach_classify import classify_temperature_breach
+from alert_send import send_to_controller,send_to_email
 
 def check_and_alert(alertTarget, batteryChar, temperatureInC):
     breachType = classify_temperature_breach(batteryChar['coolingType'], temperatureInC)
@@ -10,6 +11,3 @@ def check_and_alert(alertTarget, batteryChar, temperatureInC):
     else:
         raise ValueError(f"Unknown alert target: {alertTarget}")
 
-def send_to_controller(breachType):
-  header = 0xfeed
-  print(f'{header}, {breachType}')
