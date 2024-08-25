@@ -9,3 +9,7 @@ def check_and_alert(alertTarget, batteryChar, temperatureInC):
         send_to_email(breachType)
     else:
         raise ValueError(f"Unknown alert target: {alertTarget}")
+
+def send_to_controller(breachType):
+  header = 0xfeed
+  print(f'{header}, {breachType}')
