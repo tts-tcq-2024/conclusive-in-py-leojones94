@@ -4,12 +4,14 @@ from breach_infer import infer_breach
 from check_alert import check_and_alert
 from unittest.mock import patch
 
+import unittest
+
 class TypewiseTest(unittest.TestCase):
     
     def test_infer_breach(self):
-        self.assertEqual(infer_breach(20, 50, 100), 'TOO_LOW')
-        self.assertEqual(infer_breach(60, 50, 100), 'TOO_HIGH')
-        self.assertEqual(infer_breach(75, 50, 100), 'NORMAL')
+        self.assertEqual(infer_breach(20, 50, 100), 'TOO_LOW', "Value below lower limit should return 'TOO_LOW'")
+        self.assertEqual(infer_breach(60, 50, 100), 'TOO_HIGH', "Value above upper limit should return 'TOO_HIGH'")
+        self.assertEqual(infer_breach(75, 50, 100), 'NORMAL', "Value within limits should return 'NORMAL'")
 
     def test_classify_temperature_breach(self):
         self.assertEqual(classify_temperature_breach('PASSIVE_COOLING', 30), 'NORMAL')
@@ -20,6 +22,8 @@ class TypewiseTest(unittest.TestCase):
 
     def test_check_and_alert(self):
         # Mocking the print function to capture output
+        from unittest.mock import patch
+        
         with patch('builtins.print') as mock_print:
             check_and_alert('TO_CONTROLLER', {'coolingType': 'PASSIVE_COOLING'}, 30)
             mock_print.assert_called_once_with('65261, NORMAL')
@@ -34,5 +38,4 @@ class TypewiseTest(unittest.TestCase):
             check_and_alert('UNKNOWN_TARGET', {'coolingType': 'PASSIVE_COOLING'}, 30)
 
 if __name__ == '__main__':
-    unittest.main()
     unittest.main()
