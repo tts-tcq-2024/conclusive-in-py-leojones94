@@ -1,4 +1,5 @@
 import unittest
+from temp_breach_classify import classify_temperature_breach
 
 class TypewiseTest(unittest.TestCase):
     
