@@ -19,20 +19,19 @@ class TypewiseTest(unittest.TestCase):
 
     def test_check_and_alert(self):
         # Mocking the print function to capture output
-        from unittest.mock import patch
-        
         with patch('builtins.print') as mock_print:
             check_and_alert('TO_CONTROLLER', {'coolingType': 'PASSIVE_COOLING'}, 30)
-            mock_print.assert_called_once_with('0xfeed, NORMAL')
+            mock_print.assert_called_once_with('65261, NORMAL')
 
         with patch('builtins.print') as mock_print:
             check_and_alert('TO_EMAIL', {'coolingType': 'HI_ACTIVE_COOLING'}, 46)
             mock_print.assert_any_call('To: a.b@c.com')
             mock_print.assert_any_call('Hi, the temperature is too high')
-    
+
     def test_invalid_alert_target(self):
         with self.assertRaises(ValueError):
             check_and_alert('UNKNOWN_TARGET', {'coolingType': 'PASSIVE_COOLING'}, 30)
 
 if __name__ == '__main__':
+    unittest.main()
     unittest.main()
