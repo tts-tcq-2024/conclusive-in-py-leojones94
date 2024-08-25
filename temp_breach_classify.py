@@ -1,3 +1,5 @@
+from breach_infer import infer_breach
+
 def classify_temperature_breach(coolingType, temperatureInC):
     limits = {
         'PASSIVE_COOLING': (0, 35),
