@@ -1,3 +1,5 @@
+from temp_breach_classify import classify_temperature_breach
+
 def check_and_alert(alertTarget, batteryChar, temperatureInC):
     breachType = classify_temperature_breach(batteryChar['coolingType'], temperatureInC)
     
