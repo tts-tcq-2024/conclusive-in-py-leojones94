@@ -10,7 +10,7 @@ class TypewiseTest(unittest.TestCase):
     
     def test_infer_breach(self):
         self.assertEqual(infer_breach(20, 50, 100), 'TOO_LOW', "Value below lower limit should return 'TOO_LOW'")
-        self.assertEqual(infer_breach(60, 50, 100), 'TOO_HIGH', "Value above upper limit should return 'TOO_HIGH'")
+        self.assertEqual(infer_breach(110, 50, 100), 'TOO_HIGH', "Value above upper limit should return 'TOO_HIGH'")
         self.assertEqual(infer_breach(75, 50, 100), 'NORMAL', "Value within limits should return 'NORMAL'")
 
     def test_classify_temperature_breach(self):
